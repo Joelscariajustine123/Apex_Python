@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Developer Course</title>
+    <style>
+        /* --- General Styling & Resets --- */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --card-bg-color: #ffffff;
+            --text-color: #34495e;
+            --heading-color: #2c3e50;
+            --border-color: #bdc3c7;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --code-bg-color: #2d2d2d;
+            --code-text-color: #f1f1f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--secondary-color);
+            color: white;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px;
+            transition: width 0.3s;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            color: #ecf0f1;
+            padding: 12px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s, padding-left 0.3s;
+        }
+
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            padding-left: 25px;
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px 40px;
+            width: calc(100% - 260px);
+        }
+
+        header h1 {
+            color: var(--heading-color);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .module {
+            margin-bottom: 40px;
+            padding-top: 20px; /* For scroll spy offset */
+        }
+
+        .module-card {
+            background: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .module-card h2 {
+            font-size: 2.2rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+        }
+        
+        .module-card h3 {
+            font-size: 1.6rem;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .module-card p, .module-card ul {
+            margin-bottom: 15px;
+        }
+        
+        .module-card ul {
+            padding-left: 20px;
+        }
+        
+        .module-card li {
+            margin-bottom: 8px;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        thead th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* --- Code Blocks --- */
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-bg-color);
+            color: var(--code-text-color);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        
+        pre {
+            background: var(--code-bg-color);
+            color: var(--code-text-color);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .module-card h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Course Modules</h2>
+        <ul>
+            <li><a href="#module1">Module 1: HTML</a></li>
+            <li><a href="#module2">Module 2: CSS</a></li>
+            <li><a href="#module3">Module 3: CSS Frameworks</a></li>
+            <li><a href="#module4">Module 4: JavaScript</a></li>
+            <li><a href="#module5">Module 5: Python</a></li>
+            <li><a href="#module6">Module 6: Django</a></li>
+            <li><a href="#module7">Module 7: Flask</a></li>
+            <li><a href="#projects">Capstone Projects</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1>Python Full Stack Developer Course Curriculum</h1>
+            <p>A comprehensive guide to mastering front-end and back-end technologies with Python.</p>
+        </header>
+
+        <section id="module1" class="module">
+            <div class="module-card">
+                <h2>🔹 Module 1: HTML (HyperText Markup Language)</h2>
+                <h3>Introduction</h3>
+                <p><strong>What is HTML?</strong> HTML is the standard markup language for creating Web pages. It describes the structure of a Web page and consists of a series of elements.</p>
+                <p><strong>Structure of an HTML Document:</strong></p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  ...content goes here...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                
+                <h3>Commonly Used HTML Tags</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Tags</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Document Metadata</td><td><code>&lt;title&gt;, &lt;meta&gt;, &lt;link&gt;, &lt;style&gt;, &lt;script&gt;</code></td><td>Defines page title, metadata, stylesheets, and scripts.</td></tr>
+                        <tr><td>Text Formatting</td><td><code>&lt;h1&gt; - &lt;h6&gt;, &lt;p&gt;, &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, &lt;em&gt;, &lt;u&gt;, &lt;br&gt;, &lt;hr&gt;</code></td><td>Headings, paragraphs, bold/italic text, emphasis, line breaks, and horizontal rules.</td></tr>
+                        <tr><td>Lists</td><td><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;</code></td><td>Unordered, ordered, and definition lists.</td></tr>
+                        <tr><td>Links & Navigation</td><td><code>&lt;a href=""&gt;, &lt;nav&gt;</code></td><td>Create hyperlinks and navigation menus.</td></tr>
+                        <tr><td>Images & Media</td><td><code>&lt;img src=""&gt;, &lt;audio&gt;, &lt;video&gt;, &lt;source&gt;</code></td><td>Insert images, audio, and video.</td></tr>
+                        <tr><td>Tables</td><td><code>&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;</code></td><td>Create and structure data tables.</td></tr>
+                        <tr><td>Forms</td><td><code>&lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt;, &lt;option&gt;, &lt;button&gt;, &lt;label&gt;</code></td><td>Collect user input and data submission.</td></tr>
+                        <tr><td>Layout & Structure</td><td><code>&lt;div&gt;, &lt;span&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;</code></td><td>Page structure and content grouping.</td></tr>
+                        <tr><td>Semantic Tags</td><td><code>&lt;figure&gt;, &lt;figcaption&gt;, &lt;details&gt;, &lt;summary&gt;, &lt;mark&gt;, &lt;time&gt;</code></td><td>Improves readability and SEO.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="module2" class="module">
+            <div class="module-card">
+                <h2>🎨 Module 2: CSS (Cascading Style Sheets)</h2>
+                <h3>CSS Basics</h3>
+                <ul>
+                    <li><strong>Syntax:</strong> <code>selector { property: value; }</code></li>
+                    <li><strong>Types:</strong> Inline, Internal, External</li>
+                    <li><strong>Selectors:</strong> Element, ID, Class, Attribute, Pseudo-classes</li>
+                </ul>
+
+                <h3>Most Used CSS Properties by Tag</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HTML Tag</th>
+                            <th>Common CSS Properties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>&lt;body&gt;</code></td><td><code>background-color, font-family, margin, padding</code></td></tr>
+                        <tr><td><code>&lt;h1&gt; - &lt;h6&gt;</code></td><td><code>color, font-size, text-align, font-weight</code></td></tr>
+                        <tr><td><code>&lt;p&gt;</code></td><td><code>line-height, color, text-indent, font-size</code></td></tr>
+                        <tr><td><code>&lt;div&gt; / &lt;section&gt;</code></td><td><code>display, width, height, margin, padding, border</code></td></tr>
+                        <tr><td><code>&lt;img&gt;</code></td><td><code>width, height, border-radius, object-fit</code></td></tr>
+                        <tr><td><code>&lt;a&gt;</code></td><td><code>color, text-decoration, hover, transition</code></td></tr>
+                        <tr><td><code>&lt;table&gt;</code></td><td><code>border-collapse, width, padding, text-align</code></td></tr>
+                        <tr><td><code>&lt;button&gt;</code></td><td><code>background-color, color, border, border-radius, cursor</code></td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Advanced CSS Topics</h3>
+                <ul>
+                    <li><strong>Box Model:</strong> content, padding, border, margin</li>
+                    <li><strong>Positioning:</strong> static, relative, absolute, fixed, sticky</li>
+                    <li><strong>Display:</strong> inline, block, inline-block, flex, grid</li>
+                    <li><strong>Flexbox & Grid Layout</strong></li>
+                    <li><strong>Transitions, Animations, and Keyframes</strong></li>
+                    <li><strong>Pseudo-classes:</strong> <code>:hover, :focus, :nth-child</code></li>
+                    <li><strong>Responsive Design using</strong> <code>@media</code> queries</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="module3" class="module">
+            <div class="module-card">
+                <h2>⚙️ Module 3: CSS Frameworks</h2>
+                <h3>🟦 Bootstrap (v5+)</h3>
+                <ul>
+                    <li><strong>Grid System:</strong> <code>container, row, col</code></li>
+                    <li>Typography & Utilities</li>
+                    <li><strong>Components:</strong> Navbar, Cards, Buttons, Modals, Alerts</li>
+                    <li>Forms, Tables, Badges, Pagination</li>
+                    <li>Carousel, Collapse, Accordion</li>
+                    <li>Customization and Responsive utilities</li>
+                </ul>
+
+                <h3>🌀 Tailwind CSS</h3>
+                <ul>
+                    <li>Utility-First CSS Framework</li>
+                    <li>Installation and Configuration (<code>tailwind.config.js</code>)</li>
+                    <li><strong>Core Concepts:</strong> Utility classes, Responsiveness, Hover, Dark Mode</li>
+                    <li><strong>Common Classes:</strong>
+                        <ul>
+                            <li>Layout: <code>flex, grid, p-*, m-*, gap-*</code></li>
+                            <li>Typography: <code>text-xl, font-bold, text-gray-700</code></li>
+                            <li>Backgrounds: <code>bg-blue-500, bg-gradient-to-r</code></li>
+                            <li>Borders & Radius: <code>border, rounded-xl</code></li>
+                            <li>Effects: <code>shadow-lg, opacity-75, hover:scale-105</code></li>
+                        </ul>
+                    </li>
+                    <li>Component creation with Tailwind utilities</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="module4" class="module">
+            <div class="module-card">
+                <h2>💻 Module 4: JavaScript</h2>
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li>Introduction, Syntax, Variables (<code>var, let, const</code>)</li>
+                    <li>Data Types (String, Number, Boolean, Array, Object)</li>
+                    <li>Operators and Expressions</li>
+                    <li>Control Statements (<code>if, else, switch</code>)</li>
+                    <li>Loops (<code>for, while, for...of, for...in</code>)</li>
+                </ul>
+
+                <h3>Functions</h3>
+                <ul>
+                    <li>Function Declaration, Expression, Arrow Function</li>
+                    <li>Parameters, Return, Default Parameters</li>
+                    <li>Scope (Local, Global), Closures</li>
+                </ul>
+
+                <h3>Events & DOM Manipulation</h3>
+                <ul>
+                    <li>Event Types (<code>click, mouseover, keypress, change</code>)</li>
+                    <li>Event Listeners (<code>addEventListener</code>)</li>
+                    <li>DOM Manipulation: <code>getElementById, querySelector, innerHTML, style</code></li>
+                    <li>Form Validation using JS</li>
+                </ul>
+
+                <h3>Advanced JS</h3>
+                <ul>
+                    <li>Objects & Arrays manipulation</li>
+                    <li>JSON (<code>parse/stringify</code>)</li>
+                    <li>Asynchronous JS: Callbacks, Promises, <code>Async/Await</code></li>
+                    <li><code>Fetch</code> API and REST API calls</li>
+                    <li>ES6 Modules (<code>import, export</code>)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="module5" class="module">
+            <div class="module-card">
+                <h2>🐍 Module 5: Python Programming</h2>
+                <h3>Basics</h3>
+                <ul>
+                    <li>Introduction, Variables, Data Types</li>
+                    <li>Input/Output, Typecasting, Operators</li>
+                </ul>
+
+                <h3>Control Statements</h3>
+                <ul>
+                    <li><code>if, elif, else</code></li>
+                    <li><code>for, while</code> loops</li>
+                    <li><code>break, continue, pass</code></li>
+                </ul>
+
+                <h3>Functions</h3>
+                <ul>
+                    <li>Defining and Calling Functions</li>
+                    <li>Arguments (positional, keyword, default, variable-length)</li>
+                    <li>Lambda Functions & Recursion</li>
+                </ul>
+                
+                <h3>Object-Oriented Programming (OOPs)</h3>
+                <ul>
+                    <li>Class and Object</li>
+                    <li>Constructors (<code>__init__</code>)</li>
+                    <li>Inheritance, Polymorphism, Encapsulation, Abstraction</li>
+                    <li><code>@staticmethod, @classmethod</code></li>
+                </ul>
+
+                <h3>Advanced Python Topics</h3>
+                <ul>
+                    <li>File Handling (read/write)</li>
+                    <li>Exception Handling (<code>try, except, finally</code>)</li>
+                    <li>Regular Expressions (<code>re</code> module)</li>
+                    <li>Virtual Environments and Package Management (pip)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="module6" class="module">
+            <div class="module-card">
+                <h2>🌐 Module 6: Django Framework</h2>
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Install & Create Project: <code>django-admin startproject</code></li>
+                    <li>Create App: <code>python manage.py startapp</code></li>
+                    <li>Project Structure and <code>settings.py</code></li>
+                </ul>
+
+                <h3>Core Components</h3>
+                <ul>
+                    <li><strong>Views:</strong> Function-based & Class-based</li>
+                    <li><strong>Models:</strong> ORM, Create Models, Migrate (<code>makemigrations, migrate</code>)</li>
+                    <li><strong>Admin Panel:</strong> Register models and customize admin</li>
+                    <li><strong>Templates:</strong> HTML integration, Template tags, Filters</li>
+                </ul>
+                
+                <h3>Static & Media Files</h3>
+                <ul>
+                    <li>Static files setup (<code>STATIC_URL, STATICFILES_DIRS</code>)</li>
+                    <li>Media files handling (<code>MEDIA_URL, MEDIA_ROOT</code>)</li>
+                </ul>
+
+                <h3>Database & User Authentication</h3>
+                <ul>
+                    <li>MySQL Configuration in <code>settings.py</code></li>
+                    <li>CRUD Operations using Django ORM</li>
+                    <li>User Authentication: Register, Login, Logout</li>
+                    <li><code>UserCreationForm, AuthenticationForm</code> & Session Management</li>
+                </ul>
+
+                <h3>Form Processing & REST API</h3>
+                <ul>
+                    <li><code>forms.py</code> with Django Forms</li>
+                    <li><code>request.POST</code> in Views</li>
+                    <li>Django REST Framework (DRF): Serializers, ViewSets, Routers</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="module7" class="module">
+            <div class="module-card">
+                <h2>☕ Module 7: Flask Framework</h2>
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Install Flask & Create App</li>
+                    <li>Application Structure, Routing & Views</li>
+                </ul>
+                
+                <h3>Core Components</h3>
+                <ul>
+                    <li>Templates using Jinja2</li>
+                    <li>Static and Media file setup</li>
+                    <li>Models using SQLAlchemy ORM</li>
+                    <li>MySQL Connection setup</li>
+                </ul>
+                
+                <h3>User Authentication & Forms</h3>
+                <ul>
+                    <li>Login, Logout, Session handling</li>
+                    <li>Password hashing (<code>werkzeug.security</code>)</li>
+                    <li>Using FlaskForm (WTForms) to handle POST and GET requests</li>
+                </ul>
+
+                <h3>REST API</h3>
+                <ul>
+                    <li>JSON Response using Flask <code>jsonify</code></li>
+                    <li>CRUD API with Flask + MySQL</li>
+                    <li>Integration with tools like Postman</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="module">
+            <div class="module-card">
+                <h2>🧱 Capstone Projects</h2>
+                <p>Apply your skills by building real-world applications. These projects will test your knowledge across the entire stack.</p>
+                <ul>
+                    <li><strong>Portfolio Website:</strong> (HTML, CSS, JS, Bootstrap)</li>
+                    <li><strong>CRUD App:</strong> (Django + MySQL)</li>
+                    <li><strong>Blog App with Authentication:</strong> (Django)</li>
+                    <li><strong>REST API Project:</strong> (Flask + MySQL)</li>
+                    <li><strong>Smart Billing / Slot Management System:</strong> (Full Stack Project)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // Simple script for active link highlighting in the sidebar
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.sidebar ul li a');
+            const sections = document.querySelectorAll('.module');
+
+            function changeLinkState() {
+                let index = sections.length;
+
+                while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+                
+                links.forEach((link) => link.classList.remove('active'));
+                // Check if the link exists before trying to add a class to it
+                if (links[index]) {
+                    links[index].classList.add('active');
+                }
+            }
+
+            changeLinkState();
+            window.addEventListener('scroll', changeLinkState);
+        });
+    </script>
+</body>
+</html>

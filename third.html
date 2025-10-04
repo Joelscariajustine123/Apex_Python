@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Development Guide</title>
+    <style>
+        /* --- General Styling & Variables --- */
+        :root {
+            --primary-color: #34495e;
+            --secondary-color: #41b883;
+            --background-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --header-bg: #2c3e50;
+            --sidebar-bg: #ffffff;
+            --code-bg: #2d2d2d;
+            --border-color: #bdc3c7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* --- Sidebar Navigation --- */
+        #sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 1rem;
+            height: calc(100vh - 60px); /* Full height minus header */
+            position: sticky;
+            top: 60px;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar li a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+
+        #sidebar li a:hover, #sidebar li a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* --- Main Content Area --- */
+        #main-content {
+            flex: 1;
+            padding: 2rem 3rem;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding-top: 60px; /* Offset for sticky header */
+            margin-top: -60px; /* Negative margin to correct anchor link positioning */
+        }
+
+        h2, h3, h4 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; border-bottom: none; color: #3498db; }
+
+        /* --- Code Blocks --- */
+        .code-block {
+            position: relative;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        code {
+            font-family: "Fira Code", "Courier New", monospace;
+            font-size: 0.95rem;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+        }
+        
+        .copy-btn:active {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- Utility Classes & Others --- */
+        .note {
+            background-color: #fffbe6;
+            border-left: 5px solid #f0ad4e;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .command {
+            background-color: #e7e7e7;
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--header-bg);
+            color: white;
+            margin-top: auto;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            #sidebar {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 250px;
+                height: 100%;
+                transform: translateX(-100%);
+                z-index: 999;
+                border-right: 1px solid var(--border-color);
+            }
+
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            
+            #main-content {
+                padding: 1.5rem;
+            }
+
+            .main-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>🐍 Python Full Stack Guide</h1>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </header>
+
+    <div class="container">
+        <aside id="sidebar">
+            <h2>Topics</h2>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#python-basics">1. Python Basics</a></li>
+                    <li><a href="#frontend-basics">2. Frontend Basics</a></li>
+                    <li><a href="#html">2.1 HTML</a></li>
+                    <li><a href="#css">2.2 CSS</a></li>
+                    <li><a href="#javascript">2.3 JavaScript</a></li>
+                    <li><a href="#bootstrap">2.4 Bootstrap</a></li>
+                    <li><a href="#tailwind">2.5 Tailwind CSS</a></li>
+                    <li><a href="#django-intro">3. Django Framework</a></li>
+                    <li><a href="#django-project">3.1 Start Project & App</a></li>
+                    <li><a href="#django-views">3.2 Views & URLs</a></li>
+                    <li><a href="#django-models">3.3 Models</a></li>
+                    <li><a href="#django-admin">3.4 Admin Panel</a></li>
+                    <li><a href="#django-static">3.5 Static & Media Files</a></li>
+                    <li><a href="#django-mysql">3.6 MySQL Connection</a></li>
+                    <li><a href="#django-auth">3.7 User Authentication</a></li>
+                    <li><a href="#django-forms">3.8 Form Processing</a></li>
+                    <li><a href="#django-rest">3.9 REST API with DRF</a></li>
+                    <li><a href="#flask-basics">4. Flask Basics</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main id="main-content">
+            <section id="intro">
+                <h2>Welcome to the Ultimate Python Full Stack Guide</h2>
+                <p>This guide is your one-stop resource for becoming a Python Full Stack Developer. We'll cover everything from the fundamentals of Python to building complex web applications with Django and even touch upon Flask. Let's get started! 🚀</p>
+            </section>
+            
+            <hr>
+
+            <section id="python-basics">
+                <h2>1. Python Basics</h2>
+                <p>Python is a versatile and beginner-friendly language. It's the foundation of our stack.</p>
+                <h4>Variables and Data Types</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code># Strings, Integers, Floats, Booleans
+name = "Alice"
+age = 30
+height = 5.8
+is_student = False
+
+print(f"{name} is {age} years old.")</code></pre>
+                </div>
+                <h4>Data Structures</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code># List (mutable)
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")
+
+# Tuple (immutable)
+coordinates = (10.0, 20.0)
+
+# Dictionary (key-value pairs)
+person = {"name": "Bob", "age": 25}
+print(person["name"])</code></pre>
+                </div>
+                 <h4>Control Flow</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code># If-Else statements
+if age > 18:
+    print("Adult")
+else:
+    print("Minor")
+
+# For loop
+for fruit in fruits:
+    print(fruit)
+
+# While loop
+count = 0
+while count < 3:
+    print(f"Count is {count}")
+    count += 1</code></pre>
+                </div>
+                <h4>Functions</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>def greet(name):
+    return f"Hello, {name}!"
+
+message = greet("Charlie")
+print(message)</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section id="frontend-basics">
+                <h2>2. Frontend Basics</h2>
+                <p>The frontend is what users see and interact with. It's built with HTML, CSS, and JavaScript.</p>
+            </section>
+
+            <section id="html">
+                <h3>2.1 HTML (HyperText Markup Language)</h3>
+                <p>HTML provides the structure of your webpage.</p>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    &lt;a href="https://google.com"&gt;Go to Google&lt;/a&gt;
+    &lt;img src="image.jpg" alt="An image"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="css">
+                <h3>2.2 CSS (Cascading Style Sheets)</h3>
+                <p>CSS is used to style and visually format your HTML.</p>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+p {
+    color: #666;
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="javascript">
+                <h3>2.3 JavaScript</h3>
+                <p>JavaScript makes your webpages interactive.</p>
+                <h4>DOM Manipulation</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>// script.js
+// Get an element and change its content
+const heading = document.getElementById('main-heading');
+heading.textContent = 'Hello, World!';
+
+// Add an event listener to a button
+const myButton = document.getElementById('my-btn');
+myButton.addEventListener('click', () => {
+    alert('Button was clicked!');
+});</code></pre>
+                </div>
+            </section>
+            
+            <section id="bootstrap">
+                <h3>2.4 Bootstrap</h3>
+                <p>Bootstrap is a popular CSS framework for building responsive, mobile-first websites quickly.</p>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;!-- Add Bootstrap CSS --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;div class="container"&gt;
+  &lt;div class="alert alert-success" role="alert"&gt;
+    This is a Bootstrap alert!
+  &lt;/div&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+            
+            <section id="tailwind">
+                <h3>2.5 Tailwind CSS</h3>
+                <p>Tailwind is a utility-first CSS framework that gives you building blocks to design custom layouts without writing custom CSS.</p>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;!-- Using Tailwind classes directly in HTML --&gt;
+&lt;div class="bg-blue-500 text-white p-4 rounded-lg shadow-md"&gt;
+  &lt;h2 class="text-2xl font-bold"&gt;Tailwind CSS Card&lt;/h2&gt;
+  &lt;p class="mt-2"&gt;This component is styled entirely with utility classes.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section id="django-intro">
+                <h2>3. Django Framework</h2>
+                <p>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the Model-View-Template (MVT) architectural pattern.</p>
+            </section>
+
+            <section id="django-project">
+                <h3>3.1 Start Project & App</h3>
+                <p>Let's create our Django project and a dedicated app inside it.</p>
+                <h4>Commands</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code># Install Django
+pip install django
+
+# Create a new project named 'myproject'
+django-admin startproject myproject
+cd myproject
+
+# Create a new app named 'myapp'
+python manage.py startapp myapp
+
+# Run the development server
+python manage.py runserver</code></pre>
+                </div>
+                <div class="note">
+                    <p>After creating an app, you must add it to the <code class="command">INSTALLED_APPS</code> list in your project's <code class="command">settings.py</code> file.</p>
+                </div>
+            </section>
+
+            <section id="django-views">
+                <h3>3.2 Views & URLs</h3>
+                <p>Views handle the logic for requests, and URLs map request paths to those views.</p>
+                <h4>myapp/views.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Hello, Django World!")
+    
+def profile(request):
+    context = {'name': 'Alice', 'age': 30}
+    return render(request, 'myapp/profile.html', context)
+</code></pre>
+                </div>
+                <h4>myproject/urls.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')), # Include app's urls
+]</code></pre>
+                </div>
+                <h4>myapp/urls.py (Create this file)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('profile/', views.profile, name='profile'),
+]</code></pre>
+                </div>
+                <h4>myapp/templates/myapp/profile.html</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Profile&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome, {{ name }}!&lt;/h1&gt;
+    &lt;p&gt;You are {{ age }} years old.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="django-models">
+                <h3>3.3 Models</h3>
+                <p>Models are Python classes that define the structure of your database tables.</p>
+                <h4>myapp/models.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name</code></pre>
+                </div>
+                <h4>Commands to apply model changes</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code># Create migration files for model changes
+python manage.py makemigrations
+
+# Apply migrations to the database
+python manage.py migrate</code></pre>
+                </div>
+            </section>
+
+            <section id="django-admin">
+                <h3>3.4 Admin Panel</h3>
+                <p>Django comes with a powerful, built-in admin interface. Register your models to manage them.</p>
+                <h4>myapp/admin.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.contrib import admin
+from .models import Product
+
+# Register your models here.
+admin.site.register(Product)</code></pre>
+                </div>
+                 <div class="note">
+                    <p>You need to create a superuser to access the admin panel. Run <code class="command">python manage.py createsuperuser</code> and follow the prompts.</p>
+                </div>
+            </section>
+
+            <section id="django-static">
+                <h3>3.5 Static & Media Files</h3>
+                <p>Static files are for CSS, JS, and images. Media files are user-uploaded content.</p>
+                <h4>settings.py (for Static Files)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>import os
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]</code></pre>
+                </div>
+                <h4>settings.py (for Media Files)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')</code></pre>
+                </div>
+                <h4>myproject/urls.py (for Media Files in development)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # ... your other urls
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+</code></pre>
+                </div>
+            </section>
+
+            <section id="django-mysql">
+                <h3>3.6 MySQL Connection</h3>
+                <p>To use MySQL instead of the default SQLite, update your settings.</p>
+                <h4>Install MySQL client library</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip install mysqlclient</code></pre>
+                </div>
+                <h4>settings.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',  # Or your DB host
+        'PORT': '3306',
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="django-auth">
+                <h3>3.7 User Authentication</h3>
+                <p>Django has a robust built-in authentication system.</p>
+                <h4>Login View Logic (myapp/views.py)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+
+def login_view(request):
+    if request.method == 'POST':
+        # Logic to handle form submission
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            # Handle invalid login
+            pass
+    return render(request, 'myapp/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')</code></pre>
+                </div>
+            </section>
+
+            <section id="django-forms">
+                <h3>3.8 Form Processing</h3>
+                <p>Django provides two main ways to handle forms: using the Form class or handling POST data directly.</p>
+                <h4>Method 1: Using forms.py (Recommended)</h4>
+                <h5>myapp/forms.py (Create this file)</h5>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+</code></pre>
+                </div>
+                <h5>myapp/views.py</h5>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from .forms import ContactForm
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the data in form.cleaned_data
+            name = form.cleaned_data['name']
+            # ... do something with the data
+            return redirect('success_page')
+    else:
+        form = ContactForm()
+    return render(request, 'myapp/contact.html', {'form': form})</code></pre>
+                </div>
+                 <h5>myapp/templates/myapp/contact.html</h5>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;form method="post"&gt;
+    {% csrf_token %}
+    {{ form.as_p }}
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <h4>Method 2: Handling request.POST directly</h4>
+                <h5>myapp/views.py</h5>
+                 <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>def simple_form_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        # Process the data...
+        print(f"Name: {name}, Email: {email}")
+        return redirect('success_page')
+    return render(request, 'myapp/simple_form.html')</code></pre>
+                </div>
+            </section>
+
+            <section id="django-rest">
+                <h3>3.9 REST API with DRF</h3>
+                <p>Django REST Framework (DRF) is the standard for building APIs with Django.</p>
+                <h4>Installation</h4>
+                 <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip install djangorestframework</code></pre>
+                </div>
+                <h4>myapp/serializers.py (Create this file)</h4>
+                 <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from rest_framework import serializers
+from .models import Product
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price', 'description']</code></pre>
+                </div>
+                <h4>myapp/views.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from rest_framework import viewsets
+from .models import Product
+from .serializers import ProductSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer</code></pre>
+                </div>
+                 <h4>myapp/urls.py</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet
+
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+
+urlpatterns = [
+    # ... your existing urls
+    path('api/', include(router.urls)),
+]</code></pre>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section id="flask-basics">
+                <h2>4. Flask Basics</h2>
+                <p>Flask is a micro web framework for Python. It's lightweight and flexible.</p>
+                 <h4>Installation</h4>
+                 <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip install Flask</code></pre>
+                </div>
+                <h4>app.py (A simple Flask app)</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>from flask import Flask, render_template
+
+app = Flask(__name__)
+
+# Basic route
+@app.route('/')
+def hello_world():
+    return 'Hello, Flask!'
+
+# Route with variable passing
+@app.route('/user/&lt;username&gt;')
+def show_user_profile(username):
+    return f'User: {username}'
+    
+# Template rendering
+@app.route('/profile')
+def profile():
+    user_data = {'name': 'Chris', 'is_admin': True}
+    return render_template('profile.html', user=user_data)
+    
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+                </div>
+                 <h4>templates/profile.html</h4>
+                <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;User Profile&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, {{ user.name }}!&lt;/h1&gt;
+    {% if user.is_admin %}
+        &lt;p&gt;You have admin privileges.&lt;/p&gt;
+    {% else %}
+        &lt;p&gt;You are a regular user.&lt;/p&gt;
+    {% endif %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python Full Stack Guide. Happy Coding!</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            
+            // Toggle sidebar for mobile
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+
+            // Close sidebar when a link is clicked or when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnMenuToggle = menuToggle.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnMenuToggle && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Add copy to clipboard functionality
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const pre = button.parentElement.querySelector('pre');
+                    const code = pre.querySelector('code').innerText;
+                    navigator.clipboard.writeText(code).then(() => {
+                        button.innerText = 'Copied!';
+                        setTimeout(() => {
+                            button.innerText = 'Copy';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            });
+            
+            // Highlight active sidebar link on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#sidebar nav ul li a');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

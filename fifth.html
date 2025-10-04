@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Course Syllabus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">Python Full Stack</a>
+            <ul class="nav-menu">
+                <li><a href="#module1">HTML</a></li>
+                <li><a href="#module2">CSS</a></li>
+                <li><a href="#module3">Frameworks</a></li>
+                <li><a href="#module4">JavaScript</a></li>
+                <li><a href="#module5">Python</a></li>
+                <li><a href="#module6">Django</a></li>
+                <li><a href="#module7">Flask</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Complete Guide to Python Full Stack Development</h1>
+            <p>Your comprehensive roadmap to mastering web development, from front-end essentials to back-end Python frameworks.</p>
+        </header>
+
+        <section id="module1" class="module">
+            <h2>Module 1: HTML (HyperText Markup Language) 🔹</h2>
+            <h3>Introduction</h3>
+            <p><strong>What is HTML?</strong> HTML is the standard markup language for creating web pages. It describes the structure of a web page using elements, which are represented by tags. Browsers read the HTML document and render it into a visible webpage.</p>
+            <p><strong>Structure of an HTML Document:</strong> Every HTML page has a basic structure.</p>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code>: Declares the document type to be HTML5. It's the very first thing in your document.</li>
+                <li><code>&lt;html&gt;</code>: The root element of an HTML page.</li>
+                <li><code>&lt;head&gt;</code>: Contains meta-information about the page, like the title, character set, styles, and scripts. This content is not displayed on the page itself.</li>
+                <li><code>&lt;body&gt;</code>: Contains the visible page content that is displayed in the browser.</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <h3>Commonly Used HTML Tags</h3>
+            
+            <h4>Document Metadata</h4>
+            <p>These tags go inside the <code>&lt;head&gt;</code> section and provide information about the document.</p>
+            <ul>
+                <li><code>&lt;title&gt;</code>: Sets the title of the browser tab or window. Essential for SEO and user experience.</li>
+                <li><code>&lt;meta&gt;</code>: Provides metadata like character encoding (<code>&lt;meta charset="UTF-8"&gt;</code>) or viewport settings for responsive design.</li>
+                <li><code>&lt;link&gt;</code>: Links to external resources, most commonly a CSS stylesheet (<code>&lt;link rel="stylesheet" href="style.css"&gt;</code>).</li>
+                <li><code>&lt;style&gt;</code>: Contains internal CSS styles.</li>
+                <li><code>&lt;script&gt;</code>: Embeds or links to an external JavaScript file.</li>
+            </ul>
+
+            <h4>Text Formatting</h4>
+            <p>These tags are used to structure and format text content.</p>
+            <ul>
+                <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>: Define HTML headings, from most important (h1) to least important (h6).</li>
+                <li><code>&lt;p&gt;</code>: Defines a paragraph.</li>
+                <li><code>&lt;b&gt;</code> and <code>&lt;strong&gt;</code>: Both make text bold. <code>&lt;strong&gt;</code> indicates that the text has strong importance.</li>
+                <li><code>&lt;i&gt;</code> and <code>&lt;em&gt;</code>: Both make text italic. <code>&lt;em&gt;</code> (emphasis) indicates semantic emphasis.</li>
+                <li><code>&lt;u&gt;</code>: Underlines text (use with caution as it can be confused with a link).</li>
+                <li><code>&lt;br&gt;</code>: Inserts a single line break.</li>
+                <li><code>&lt;hr&gt;</code>: Creates a thematic break or horizontal rule.</li>
+            </ul>
+            
+            <h4>Lists</h4>
+            <ul>
+                <li><code>&lt;ul&gt;</code>: Unordered List (bullet points).</li>
+                <li><code>&lt;ol&gt;</code>: Ordered List (numbered).</li>
+                <li><code>&lt;li&gt;</code>: List Item, used inside <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>.</li>
+                <li><code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code>: Definition List, with a term (<code>&lt;dt&gt;</code>) and its description (<code>&lt;dd&gt;</code>).</li>
+            </ul>
+
+            <h4>Links & Navigation</h4>
+            <ul>
+                <li><code>&lt;a href="URL"&gt;</code>: Creates a hyperlink. The <code>href</code> attribute specifies the destination URL.</li>
+                <li><code>&lt;nav&gt;</code>: A semantic tag that defines a set of navigation links.</li>
+            </ul>
+
+            <h4>Images & Media</h4>
+            <ul>
+                <li><code>&lt;img src="path/to/image.jpg" alt="description"&gt;</code>: Embeds an image. <code>src</code> is the path to the image, and <code>alt</code> is the alternative text for accessibility.</li>
+                <li><code>&lt;audio&gt;</code> & <code>&lt;video&gt;</code>: Embed audio and video files, often used with a <code>&lt;source&gt;</code> tag inside to specify multiple file formats.</li>
+            </ul>
+
+            <h4>Tables</h4>
+            <p>Used to display data in a structured, tabular format.</p>
+            <ul>
+                <li><code>&lt;table&gt;</code>: The main container for the table.</li>
+                <li><code>&lt;tr&gt;</code>: Table Row.</li>
+                <li><code>&lt;td&gt;</code>: Table Data (a standard cell).</li>
+                <li><code>&lt;th&gt;</code>: Table Header (a header cell, usually bold and centered).</li>
+                <li><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>: Group the header, body, and footer content of a table for better structure.</li>
+            </ul>
+
+            <h4>Forms</h4>
+            <p>Used to collect user input.</p>
+            <ul>
+                <li><code>&lt;form&gt;</code>: A container for form elements.</li>
+                <li><code>&lt;input&gt;</code>: The most versatile form element. The <code>type</code> attribute can be <code>text</code>, <code>password</code>, <code>email</code>, <code>checkbox</code>, <code>radio</code>, <code>submit</code>, etc.</li>
+                <li><code>&lt;textarea&gt;</code>: A multi-line text input field.</li>
+                <li><code>&lt;select&gt;</code> & <code>&lt;option&gt;</code>: Creates a dropdown list.</li>
+                <li><code>&lt;button&gt;</code>: A clickable button.</li>
+                <li><code>&lt;label&gt;</code>: A caption for a form element, improving accessibility.</li>
+            </ul>
+
+            <h4>Layout & Structure</h4>
+            <p>These tags help organize the page content into logical sections.</p>
+            <ul>
+                <li><code>&lt;div&gt;</code>: A generic block-level container used for grouping and styling.</li>
+                <li><code>&lt;span&gt;</code>: A generic inline container, often used to style a small part of text.</li>
+                <li><code>&lt;header&gt;</code>: Represents introductory content, typically a group of navigational aids.</li>
+                <li><code>&lt;footer&gt;</code>: Represents the footer of a document or section.</li>
+                <li><code>&lt;main&gt;</code>: Specifies the main, dominant content of the document.</li>
+                <li><code>&lt;section&gt;</code>: Defines a thematic grouping of content.</li>
+                <li><code>&lt;article&gt;</code>: Represents a self-contained piece of content (e.g., a blog post).</li>
+                <li><code>&lt;aside&gt;</code>: Represents content tangentially related to the main content (e.g., a sidebar).</li>
+            </ul>
+        </section>
+
+        <section id="module2" class="module">
+            <h2>Module 2: CSS (Cascading Style Sheets) 🎨</h2>
+            <h3>CSS Basics</h3>
+            <p><strong>Syntax:</strong> CSS works by selecting an HTML element and then applying styles to it. The syntax consists of a selector, followed by a declaration block in curly braces containing property-value pairs.</p>
+            <div class="code-block">
+                <pre><code>selector {
+    property: value;
+}
+
+/* Example */
+p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
+            </div>
+            
+            <p><strong>Types of CSS:</strong></p>
+            <ul>
+                <li><strong>Inline:</strong> Styles applied directly to an HTML element using the <code>style</code> attribute. (e.g., <code>&lt;p style="color: red;"&gt;...&lt;/p&gt;</code>). Use sparingly.</li>
+                <li><strong>Internal:</strong> Styles placed within a <code>&lt;style&gt;</code> tag in the HTML <code>&lt;head&gt;</code> section. Affects only that page.</li>
+                <li><strong>External:</strong> Styles defined in a separate <code>.css</code> file, linked to the HTML page using a <code>&lt;link&gt;</code> tag. This is the best practice.</li>
+            </ul>
+
+            <p><strong>Selectors:</strong> Used to target HTML elements.</p>
+            <ul>
+                <li><strong>Element Selector:</strong> Targets all elements of a certain type (e.g., <code>p</code>, <code>h1</code>, <code>div</code>).</li>
+                <li><strong>ID Selector:</strong> Targets a single, unique element with a specific ID (e.g., <code>#header</code>).</li>
+                <li><strong>Class Selector:</strong> Targets all elements with a specific class (e.g., <code>.btn-primary</code>). Can be applied to multiple elements.</li>
+                <li><strong>Attribute Selector:</strong> Targets elements based on an attribute or its value (e.g., <code>input[type="text"]</code>).</li>
+                <li><strong>Pseudo-classes:</strong> Select elements based on their state (e.g., <code>a:hover</code> for a link being hovered over).</li>
+            </ul>
+
+            <h3>Advanced CSS Topics</h3>
+            <p><strong>Box Model:</strong> Every HTML element is a rectangular box. The box model describes the layout of this box, consisting of: content, padding (space around content), border (line around padding), and margin (space outside the border).</p>
+            
+            
+            <p><strong>Positioning:</strong> Controls how elements are placed on the page.</p>
+            <ul>
+                <li><code>static</code>: Default value. Elements render in order, as they appear in the document flow.</li>
+                <li><code>relative</code>: The element is positioned relative to its normal position.</li>
+                <li><code>absolute</code>: The element is positioned relative to its nearest positioned ancestor.</li>
+                <li><code>fixed</code>: The element is positioned relative to the viewport (the browser window). It stays in the same place even when the page is scrolled.</li>
+                <li><code>sticky</code>: A hybrid of relative and fixed. It's treated as relative until it crosses a specified threshold, at which point it becomes fixed.</li>
+            </ul>
+
+            <p><strong>Display Property:</strong> Determines how an element is rendered.</p>
+            <ul>
+                <li><code>inline</code>: Elements do not start on a new line and only take up as much width as necessary (e.g., <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>).</li>
+                <li><code>block</code>: Elements start on a new line and take up the full width available (e.g., <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>).</li>
+                <li><code>inline-block</code>: Elements are inline but can have a set width and height.</li>
+                <li><code>flex</code>: Enables the Flexbox layout model for one-dimensional layouts (rows or columns).</li>
+                <li><code>grid</code>: Enables the Grid layout model for two-dimensional layouts (rows and columns).</li>
+            </ul>
+
+            <p><strong>Responsive Design using @media queries:</strong> Media queries allow you to apply different CSS rules based on device characteristics, like screen width, enabling responsive design that adapts to different devices (desktops, tablets, phones).</p>
+            <div class="code-block">
+                <pre><code>/* Styles for screens larger than 768px */
+.container {
+    width: 90%;
+}
+
+/* Styles for screens 768px or smaller */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="module3" class="module">
+            <h2>Module 3: CSS Frameworks ⚙️</h2>
+            <h3>Bootstrap (v5+) 🟦</h3>
+            <p>Bootstrap is a popular, component-based CSS framework that provides pre-built components and a powerful grid system to help you build responsive websites quickly.</p>
+            <ul>
+                <li><strong>Grid System:</strong> A mobile-first, 12-column grid system. You structure your layout with <code>.container</code>, <code>.row</code>, and <code>.col-*</code> classes.</li>
+                <li><strong>Components:</strong> Ready-to-use components like Navbars, Cards, Buttons, Modals, and Carousels that you can easily drop into your project.</li>
+                <li><strong>Utilities:</strong> Helper classes for spacing (<code>m-2</code> for margin, <code>p-3</code> for padding), colors (<code>bg-primary</code>, <code>text-danger</code>), typography, and more, allowing for rapid styling without writing custom CSS.</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>&lt;!-- Bootstrap Grid Example --&gt;
+&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;Column 1&lt;/div&gt;
+    &lt;div class="col-md-6"&gt;Column 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Bootstrap Button --&gt;
+&lt;button type="button" class="btn btn-success"&gt;Success Button&lt;/button&gt;</code></pre>
+            </div>
+            
+            <h3>Tailwind CSS 🌀</h3>
+            <p>Tailwind is a utility-first CSS framework. Instead of pre-built components, it provides low-level utility classes that you compose directly in your HTML to build any design.</p>
+            <ul>
+                <li><strong>Utility-First:</strong> Instead of writing CSS like <code>.card { ... }</code>, you use classes like <code>bg-white shadow-md rounded-lg p-4</code> directly on your HTML element.</li>
+                <li><strong>Highly Customizable:</strong> You can configure everything from your color palette to spacing scales in the <code>tailwind.config.js</code> file.</li>
+                <li><strong>Responsive by Default:</strong> Use responsive prefixes like <code>md:</code> to apply utilities at specific breakpoints (e.g., <code>w-full md:w-1/2</code>).</li>
+                <li><strong>State Variants:</strong> Apply utilities conditionally for states like hover, focus, and dark mode (e.g., <code>hover:bg-blue-700</code>, <code>dark:bg-gray-800</code>).</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>&lt;!-- Tailwind Card Example --&gt;
+&lt;div class="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl"&gt;
+  &lt;div class="md:flex"&gt;
+    &lt;div class="p-8"&gt;
+      &lt;div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"&gt;Case study&lt;/div&gt;
+      &lt;p class="mt-2 text-gray-500"&gt;Building a modern UI with Tailwind is fast.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <section id="module4" class="module">
+            <h2>Module 4: JavaScript 💻</h2>
+            <h3>Core Concepts</h3>
+            <p>JavaScript is a programming language that allows you to implement complex features on web pages, making them interactive.</p>
+            <ul>
+                <li><strong>Variables:</strong> Containers for storing data values. Declared with <code>var</code> (old way), <code>let</code> (block-scoped, can be reassigned), and <code>const</code> (block-scoped, cannot be reassigned).</li>
+                <li><strong>Data Types:</strong> Includes <code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Array</code> (a list-like object), and <code>Object</code> (a collection of key-value pairs).</li>
+                <li><strong>Control Statements:</strong> <code>if...else</code> and <code>switch</code> are used to execute different blocks of code based on conditions.</li>
+                <li><strong>Loops:</strong> <code>for</code> and <code>while</code> loops are used to execute a block of code repeatedly.</li>
+            </ul>
+            
+            <h3>DOM Manipulation</h3>
+            <p>The Document Object Model (DOM) is a programming interface for web documents. JavaScript can access and change all the HTML elements, attributes, and CSS styles in the page.</p>
+            <ul>
+                <li><strong>Selecting Elements:</strong> <code>document.getElementById('id')</code>, <code>document.querySelector('.class')</code>.</li>
+                <li><strong>Changing Content:</strong> <code>element.innerHTML = 'New content'</code>, <code>element.textContent = 'New text'</code>.</li>
+                <li><strong>Changing Styles:</strong> <code>element.style.color = 'red'</code>.</li>
+                <li><strong>Event Listeners:</strong> <code>element.addEventListener('click', function() { ... })</code> runs a function when an event (like a click) happens on an element.</li>
+            </ul>
+
+            <h3>Asynchronous JavaScript</h3>
+            <p>JavaScript is single-threaded, meaning it can only do one thing at a time. Asynchronous programming allows operations like fetching data from a server to happen in the background without blocking the main thread.</p>
+            <ul>
+                <li><strong>Callbacks:</strong> A function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. (Can lead to "callback hell").</li>
+                <li><strong>Promises:</strong> An object representing the eventual completion (or failure) of an asynchronous operation. It can be in one of three states: pending, fulfilled, or rejected. Used with <code>.then()</code> for success and <code>.catch()</code> for errors.</li>
+                <li><strong>Async/Await:</strong> Syntactic sugar built on top of Promises, making asynchronous code look and behave more like synchronous code, which is easier to read and write.</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>// Using Fetch API with Async/Await to get data from an API
+async function fetchData() {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+fetchData();</code></pre>
+            </div>
+        </section>
+
+        <section id="module5" class="module">
+            <h2>Module 5: Python Programming 🐍</h2>
+            <h3>Basics</h3>
+            <p>Python is a high-level, interpreted programming language known for its simple syntax and readability. It's a great language for beginners and widely used in web development, data science, automation, and more.</p>
+            <ul>
+                <li><strong>Variables & Data Types:</strong> Python is dynamically typed. Common data types include <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>.</li>
+                <li><strong>Control Statements:</strong> Uses <code>if</code>, <code>elif</code>, and <code>else</code> for conditional logic. Indentation (whitespace) is crucial for defining code blocks.</li>
+                <li><strong>Loops:</strong> Uses <code>for</code> loops to iterate over sequences (like lists or strings) and <code>while</code> loops to repeat a block as long as a condition is true.</li>
+            </ul>
+
+            <h3>Object-Oriented Programming (OOPs)</h3>
+            <p>OOP is a programming paradigm based on the concept of "objects", which can contain data (attributes) and code (methods). Python is an object-oriented language.</p>
+            <ul>
+                <li><strong>Class and Object:</strong> A <code>class</code> is a blueprint for creating objects. An <code>object</code> is an instance of a class.</li>
+                <li><strong>Constructor (<code>__init__</code>):</strong> A special method that is called when an object is created, used to initialize its attributes.</li>
+                <li><strong>Inheritance:</strong> A mechanism where a new class (child) inherits attributes and methods from an existing class (parent).</li>
+                <li><strong>Encapsulation:</strong> Bundling data and the methods that operate on that data within a single unit (the class).</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>class Dog:
+    # Class attribute
+    species = "Canis familiaris"
+
+    # Constructor
+    def __init__(self, name, age):
+        # Instance attributes
+        self.name = name
+        self.age = age
+
+    # Instance method
+    def bark(self):
+        return "Woof!"
+
+# Create an object (instance) of the Dog class
+my_dog = Dog("Buddy", 3)
+print(f"{my_dog.name} is {my_dog.age} years old.")
+print(my_dog.bark())</code></pre>
+            </div>
+
+            <h3>Virtual Environments</h3>
+            <p>A virtual environment is a self-contained directory that contains a specific version of Python and its own set of installed packages. This is a crucial tool for managing project dependencies and avoiding conflicts between projects.</p>
+            <div class="code-block">
+                <pre><code># Create a virtual environment named 'venv'
+python -m venv venv
+
+# Activate it on Windows
+venv\Scripts\activate
+
+# Activate it on macOS/Linux
+source venv/bin/activate
+
+# Install packages
+pip install requests
+
+# Deactivate
+deactivate</code></pre>
+            </div>
+        </section>
+
+        <section id="module6" class="module">
+            <h2>Module 6: Django Framework 🌐</h2>
+            <p>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the Model-View-Template (MVT) architectural pattern.</p>
+            <h3>Core Components</h3>
+            <ul>
+                <li><strong>Models:</strong> The single, definitive source of your data. A model is a Python class that maps to a database table. The Object-Relational Mapper (ORM) allows you to interact with your database using Python code instead of SQL.</li>
+                <li><strong>Views:</strong> A Python function or class that takes a web request and returns a web response. It contains the business logic of your application.</li>
+                <li><strong>Templates:</strong> The presentation layer. An HTML file with special Django Template Language (DTL) syntax that allows you to insert dynamic data from your views.</li>
+                <li><strong>Admin Panel:</strong> Django automatically generates a powerful, production-ready admin interface for managing your application's data.</li>
+            </ul>
+
+            <h3>User Authentication</h3>
+            <p>Django comes with a built-in user authentication system that handles user accounts, groups, permissions, and cookie-based user sessions. It provides forms and views for common tasks like login, logout, and password management.</p>
+
+            <h3>Django REST Framework (DRF)</h3>
+            <p>DRF is a powerful toolkit for building Web APIs. It makes it easy to create RESTful APIs that can be consumed by front-end frameworks or mobile applications.</p>
+            <ul>
+                <li><strong>Serializers:</strong> Allow complex data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types.</li>
+                <li><strong>ViewSets:</strong> Combine the logic for a set of related views into a single class.</li>
+                <li><strong>Routers:</strong> Automatically generate URL patterns for your ViewSets.</li>
+            </ul>
+        </section>
+
+        <section id="module7" class="module">
+            <h2>Module 7: Flask Framework ☕</h2>
+            <p>Flask is a "micro" web framework for Python. It is called a micro-framework because it aims to keep the core simple but extensible. It doesn't come with an ORM or built-in admin panel like Django, giving the developer more freedom and control.</p>
+            <h3>Core Components</h3>
+            <ul>
+                <li><strong>Routing:</strong> Uses decorators (<code>@app.route('/')</code>) to map URLs to Python functions (views).</li>
+                <li><strong>Templates:</strong> Uses the Jinja2 template engine, which is very similar to Django's template language, to render dynamic HTML pages.</li>
+                <li><strong>Models with SQLAlchemy:</strong> While Flask has no built-in ORM, it's commonly used with SQLAlchemy, a powerful SQL toolkit and ORM for Python, to interact with databases.</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, World!"
+
+@app.route('/user/&lt;username&gt;')
+def profile(username):
+    # Renders an HTML template with dynamic data
+    return render_template('profile.html', name=username)
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+            </div>
+        </section>
+
+        <section id="projects" class="module">
+            <h2>Capstone Projects 🧱</h2>
+            <p>Apply your skills by building real-world projects that consolidate your learning from all modules.</p>
+            <ul>
+                <li><strong>Portfolio Website:</strong> Showcase your skills and projects. (Focus: HTML, CSS, JS, Bootstrap/Tailwind).</li>
+                <li><strong>Blog App with Authentication:</strong> A multi-user blog platform with user registration, login, and post creation. (Focus: Django, ORM, User Auth, CRUD).</li>
+                <li><strong>Flask REST API:</strong> Build a backend API for a to-do list or notes application that a front-end could consume. (Focus: Flask, SQLAlchemy, REST principles).</li>
+                <li><strong>Smart Billing System:</strong> A full-stack application for managing products, customers, and generating invoices. (Focus: All modules, integrating front-end and back-end).</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Python Full Stack Course. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: #ecf0f1;
+    --surface-color: #ffffff;
+    --text-color: #34495e;
+    --code-bg-color: #2d2d2d;
+    --code-text-color: #f8f8f2;
+    --border-color: #bdc3c7;
+    --heading-font: 'Roboto', sans-serif;
+    --body-font: 'Roboto', sans-serif;
+    --code-font: 'Source Code Pro', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--heading-font);
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-position: inside;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+.nav-brand:hover {
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--surface-color);
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* --- Module Section --- */
+.module {
+    background-color: var(--surface-color);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.module h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.module h3 {
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* --- Code Block --- */
+.code-block {
+    position: relative;
+    background-color: var(--code-bg-color);
+    color: var(--code-text-color);
+    font-family: var(--code-font);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+pre {
+    margin: 0;
+}
+
+.code-block .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.code-block:hover .copy-btn {
+    opacity: 1;
+}
+
+.code-block .copy-btn:hover {
+    background-color: var(--primary-color);
+}
+
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .module {
+        padding: 20px;
+    }
+}

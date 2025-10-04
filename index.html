@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack with Django | From Beginner to Expert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #3776ab;
+            --secondary-color: #ffd343;
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --header-color: #2b3b4a;
+            --sidebar-bg: #ffffff;
+            --code-bg: #2d2d2d;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--header-color);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Navigation */
+        #sidebar {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem 1rem;
+            height: calc(100vh - 88px); /* Full height minus header */
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+        }
+
+        #sidebar h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #sidebar ul {
+            list-style: none;
+        }
+        
+        #sidebar ul li strong {
+            display: block;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--header-color);
+        }
+
+        #sidebar ul li a {
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #eaf2f8;
+            color: var(--primary-color);
+        }
+
+        #sidebar ul li a.active {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            transform: translateX(5px);
+        }
+
+        /* Main Content */
+        #content {
+            flex: 1;
+            padding: 2.5rem;
+            max-width: calc(100% - 300px);
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--header-color);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        section h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, ul, li {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .code-block h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .code-block pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .code-block .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease;
+        }
+        
+        .code-block .copy-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            #content {
+                max-width: 100%;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Python Full Stack Developer Roadmap</h1>
+        <p>Your complete guide to building web applications with Django.</p>
+    </header>
+
+    <div class="container">
+        <nav id="sidebar">
+            <h2>Roadmap</h2>
+            <ul id="nav-links">
+                <li><strong>Phase 1: Foundations</strong></li>
+                <li><a href="#python-basics">Python Basics</a></li>
+                <li><a href="#frontend-basics">Frontend Basics</a></li>
+                <li><a href="#dev-tools">Developer Tools</a></li>
+
+                <li><strong>Phase 2: Django Core</strong></li>
+                <li><a href="#django-setup">Setup & First Project</a></li>
+                <li><a href="#django-mvt">MVT Architecture</a></li>
+                <li><a href="#django-models">Models & Database</a></li>
+                <li><a href="#django-views">Views & URLs</a></li>
+                <li><a href="#django-templates">Templates (DTL)</a></li>
+                <li><a href="#django-admin">The Django Admin</a></li>
+                
+                <li><strong>Phase 3: Django Intermediate</strong></li>
+                <li><a href="#django-forms">Forms & User Input</a></li>
+                <li><a href="#django-static">Static & Media Files</a></li>
+                <li><a href="#django-auth">User Authentication</a></li>
+                <li><a href="#django-cbv">Class-Based Views</a></li>
+
+                <li><strong>Phase 4: Advanced & Expert</strong></li>
+                <li><a href="#django-rest">REST APIs with DRF</a></li>
+                <li><a href="#django-testing">Testing Your App</a></li>
+                <li><a href="#django-deployment">Deployment</a></li>
+                
+                <li><strong>Appendix</strong></li>
+                <li><a href="#django-commands">Django Commands Cheatsheet</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+            <section id="python-basics">
+                <h2>Phase 1.1: Python Basics 🐍</h2>
+                <p>Before diving into Django, a strong foundation in Python is essential. Django is a Python framework, so all your backend logic will be written in Python.</p>
+                <h3>Key Concepts to Master:</h3>
+                <ul>
+                    <li><strong>Data Types:</strong> Integers, Floats, Strings, Booleans.</li>
+                    <li><strong>Data Structures:</strong> Lists, Dictionaries, Tuples, Sets.</li>
+                    <li><strong>Control Flow:</strong> If-Elif-Else statements, For and While loops.</li>
+                    <li><strong>Functions:</strong> Defining functions (`def`), arguments, and return values.</li>
+                    <li><strong>Object-Oriented Programming (OOP):</strong> Classes, objects, inheritance, and methods.</li>
+                    <li><strong>Virtual Environments:</strong> Crucial for managing project dependencies.</li>
+                </ul>
+                <div class="code-block">
+                    <h4>Creating and Activating a Virtual Environment</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code># 1. Create a virtual environment named 'venv'
+python -m venv venv
+
+# 2. Activate it (Windows)
+.\venv\Scripts\activate
+
+# 3. Activate it (macOS/Linux)
+source venv/bin/activate
+
+# 4. Install packages (e.g., Django)
+pip install django</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section id="frontend-basics">
+                <h2>Phase 1.2: Frontend Basics 🎨</h2>
+                <p>A full stack developer needs to be comfortable with the frontend. Django templates will generate HTML, which is styled by CSS and made interactive with JavaScript.</p>
+                <ul>
+                    <li><strong>HTML5:</strong> The structure of your webpages. Understand semantic tags like `&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;section&gt;`, and `&lt;footer&gt;`.</li>
+                    <li><strong>CSS3:</strong> The styling. Learn about the box model, Flexbox, and Grid for creating modern layouts.</li>
+                    <li><strong>JavaScript (ES6+):</strong> For client-side interactivity. Focus on DOM manipulation, events, and making API calls (`fetch`).</li>
+                </ul>
+            </section>
+            
+            <hr>
+            
+            <section id="dev-tools">
+                <h2>Phase 1.3: Developer Tools 🛠️</h2>
+                <p>Professional developers use tools to manage their code and workflow efficiently.</p>
+                <ul>
+                    <li><strong>Git & GitHub:</strong> Version control is non-negotiable. Learn how to `init`, `add`, `commit`, `push`, and `pull`.</li>
+                    <li><strong>Code Editor:</strong> VS Code is the most popular choice, with powerful extensions for Python and Django development.</li>
+                </ul>
+                <div class="code-block">
+                    <h4>Basic Git Workflow</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code># Initialize a new git repository in your project folder
+git init
+
+# Stage all files for a commit
+git add .
+
+# Commit your changes with a message
+git commit -m "Initial project setup"
+
+# Push your code to a remote repository (like GitHub)
+git push origin main</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section id="django-setup">
+                <h2>Phase 2.1: Setup & First Project 🚀</h2>
+                <p>Let's get Django up and running. Once you've activated your virtual environment and installed Django (`pip install django`), you can create your first project and app.</p>
+                <div class="code-block">
+                    <h4>Creating a Django Project and App</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code># 1. Create a new project called 'myproject'
+django-admin startproject myproject
+cd myproject
+
+# 2. Create a new app called 'myapp'
+python manage.py startapp myapp
+
+# 3. Run the development server
+python manage.py runserver</code></pre>
+                </div>
+                <p>After running the server, visit `http://127.0.0.1:8000/` in your browser to see the Django welcome page.</p>
+            </section>
+            
+            <hr>
+            
+            <section id="django-mvt">
+                <h2>Phase 2.2: The MVT Architecture</h2>
+                <p>Django follows the Model-View-Template (MVT) architectural pattern, which is a variation of the classic Model-View-Controller (MVC).</p>
+                <ul>
+                    <li><strong>Model:</strong> The data layer. Defines the structure of your data and handles interactions with the database (Create, Read, Update, Delete).</li>
+                    <li><strong>View:</strong> The business logic layer. It receives a web request, interacts with the model to fetch data, and passes that data to a template.</li>
+                    <li><strong>Template:</strong> The presentation layer. This is what the user sees. It's an HTML file with special Django syntax to display the data provided by the view.</li>
+                </ul>
+            </section>
+            
+            <hr>
+            
+            <section id="django-models">
+                <h2>Phase 2.3: Models & Database 📦</h2>
+                <p>Models are Python classes that map to your database tables. Django's Object-Relational Mapper (ORM) allows you to interact with your database using Python code instead of SQL.</p>
+                <div class="code-block">
+                    <h4>myapp/models.py</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+                <p>After creating or changing a model, you must create and apply migrations.</p>
+                 <div class="code-block">
+                    <h4>Applying Model Changes</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code># Create the migration files based on model changes
+python manage.py makemigrations
+
+# Apply the migrations to the database
+python manage.py migrate</code></pre>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section id="django-views">
+                <h2>Phase 2.4: Views & URLs ⚙️</h2>
+                <p>Views process requests and return responses. URLs map a web address to a specific view function.</p>
+                 <div class="code-block">
+                    <h4>myapp/views.py</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.shortcuts import render
+from .models import Post
+
+def post_list(request):
+    posts = Post.objects.all().order_by('-created_at')
+    context = {'posts': posts}
+    return render(request, 'myapp/post_list.html', context)</code></pre>
+                </div>
+                 <div class="code-block">
+                    <h4>myproject/urls.py (Project URLs)</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')), # Include app URLs
+]</code></pre>
+                </div>
+                 <div class="code-block">
+                    <h4>myapp/urls.py (App URLs)</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.post_list, name='post_list'),
+]</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+            
+             <section id="django-templates">
+                <h2>Phase 2.5: Templates (DTL) 📄</h2>
+                <p>Templates are HTML files that use the Django Template Language (DTL) to display dynamic data.</p>
+                <p>You need to create a `templates` folder inside your app directory (`myapp/templates/myapp/`).</p>
+                 <div class="code-block">
+                    <h4>myapp/templates/myapp/post_list.html</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Latest Posts&lt;/h1&gt;
+    &lt;hr&gt;
+    {% for post in posts %}
+        &lt;article&gt;
+            &lt;h2&gt;{{ post.title }}&lt;/h2&gt;
+            &lt;p&gt;{{ post.content|truncatewords:30 }}&lt;/p&gt;
+            &lt;small&gt;Published on: {{ post.created_at|date:"F j, Y" }}&lt;/small&gt;
+        &lt;/article&gt;
+        &lt;hr&gt;
+    {% empty %}
+        &lt;p&gt;No posts yet.&lt;/p&gt;
+    {% endfor %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section id="django-admin">
+                <h2>Phase 2.6: The Django Admin ⭐</h2>
+                <p>Django comes with a powerful, production-ready admin interface. You can easily manage your app's data by registering your models.</p>
+                <div class="code-block">
+                    <h4>myapp/admin.py</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)</code></pre>
+                </div>
+                 <p>You first need to create a superuser to log in.</p>
+                 <div class="code-block">
+                    <h4>Creating an Admin User</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>python manage.py createsuperuser</code></pre>
+                </div>
+                <p>Now run the server and go to `/admin` to log in and manage your Posts.</p>
+            </section>
+            
+            <hr>
+            
+            <section id="django-forms">
+                <h2>Phase 3.1: Forms & User Input</h2>
+                <p>Django provides a robust system for creating HTML forms, validating data, and processing user input securely.</p>
+                <div class="code-block">
+                    <h4>myapp/forms.py</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django import forms
+from .models import Post
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']</code></pre>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section id="django-static">
+                <h2>Phase 3.2: Static & Media Files</h2>
+                <p><strong>Static files</strong> are your CSS, JavaScript, and images. <strong>Media files</strong> are user-uploaded content.</p>
+                <p>You need to configure your `settings.py` to tell Django where to find these files.</p>
+                <div class="code-block">
+                    <h4>myproject/settings.py (at the bottom)</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>import os
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+            
+            <section id="django-auth">
+                <h2>Phase 3.3: User Authentication</h2>
+                <p>Django includes a built-in authentication system for handling user accounts, groups, permissions, and cookie-based sessions.</p>
+                <ul>
+                    <li><strong>Sign Up:</strong> Creating new user accounts.</li>
+                    <li><strong>Login/Logout:</strong> Authenticating users and managing sessions.</li>
+                    <li><strong>Password Management:</strong> Securely handling password changes and resets.</li>
+                </ul>
+            </section>
+            
+            <hr>
+            
+            <section id="django-cbv">
+                <h2>Phase 3.4: Class-Based Views (CBVs)</h2>
+                <p>While function-based views are simple, Class-Based Views (CBVs) help you reuse code and structure your views in a more organized, object-oriented way. Django provides generic CBVs for common tasks.</p>
+                <div class="code-block">
+                    <h4>myapp/views.py (CBV Example)</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.views.generic import ListView, DetailView
+from .models import Post
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'myapp/post_list.html'
+    context_object_name = 'posts'
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'myapp/post_detail.html'</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+            
+            <section id="django-rest">
+                <h2>Phase 4.1: REST APIs with DRF 🌐</h2>
+                <p>To build modern, decoupled applications (e.g., with a React or mobile frontend), you need to create a REST API. <strong>Django REST Framework (DRF)</strong> is the go-to library for this.</p>
+                <div class="code-block">
+                    <h4>Install DRF</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>pip install djangorestframework</code></pre>
+                </div>
+                <h3>Key DRF Concepts:</h3>
+                <ul>
+                    <li><strong>Serializers:</strong> Convert complex data types, like Django models, into native Python datatypes that can then be easily rendered into JSON.</li>
+                    <li><strong>ViewSets & Routers:</strong> Work together to automatically generate the URL conf for your API endpoints.</li>
+                </ul>
+            </section>
+            
+            <hr>
+
+            <section id="django-testing">
+                <h2>Phase 4.2: Testing Your App 🧪</h2>
+                <p>Writing tests is crucial for building reliable and maintainable applications. Django has a built-in test runner that uses Python's standard `unittest` module.</p>
+                <div class="code-block">
+                    <h4>myapp/tests.py</h4>
+                    <button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <pre><code>from django.test import TestCase
+from django.urls import reverse
+from .models import Post
+
+class PostModelTest(TestCase):
+    def test_post_creation(self):
+        post = Post.objects.create(title="A Test Title", content="Some test content.")
+        self.assertEqual(str(post), "A Test Title")
+
+class PostListViewTest(TestCase):
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)</code></pre>
+                </div>
+            </section>
+            
+            <hr>
+            
+            <section id="django-deployment">
+                <h2>Phase 4.3: Deployment ☁️</h2>
+                <p>Taking your application from your local machine to a live web server is the final step. Popular hosting options include Heroku, DigitalOcean, AWS, and PythonAnywhere.</p>
+                <h3>General Steps:</h3>
+                <ul>
+                    <li><strong>Web Server:</strong> Use a production-ready server like Gunicorn or uWSGI.</li>
+                    <li><strong>Database:</strong> Switch from the default SQLite to a more robust database like PostgreSQL.</li>
+                    <li><strong>Static Files:</strong> Configure a service like Amazon S3 or WhiteNoise to serve your static files.</li>
+                    <li><strong>Environment Variables:</strong> Never hard-code sensitive information (like secret keys or database passwords) in your code. Use environment variables.</li>
+                </ul>
+            </section>
+            
+            <hr>
+            
+            <section id="django-commands">
+                <h2>Appendix: Django Commands Cheatsheet 📖</h2>
+                <p>A reference for the most common `python manage.py` commands you will use throughout your development process.</p>
+                
+                <h3>Project & App Management</h3>
+                <ul>
+                    <li><code>startproject &lt;project_name&gt;</code>: Creates a new Django project directory. (Note: this one uses `django-admin`, not `manage.py`).</li>
+                    <li><code>startapp &lt;app_name&gt;</code>: Creates a new Django app directory within your project.</li>
+                </ul>
+
+                <h3>Development Server</h3>
+                <ul>
+                    <li><code>runserver</code>: Starts the lightweight development web server on port 8000.</li>
+                    <li><code>runserver 8080</code>: Starts the server on a different port.</li>
+                    <li><code>runserver 0.0.0.0:8000</code>: Makes the server accessible on your local network.</li>
+                </ul>
+
+                <h3>Database Migrations</h3>
+                <ul>
+                    <li><code>makemigrations</code>: Scans your `models.py` files for changes and creates new migration files.</li>
+                    <li><code>migrate</code>: Applies all unapplied migrations to the database, updating the schema.</li>
+                    <li><code>showmigrations</code>: Lists all migrations in the project and their status.</li>
+                    <li><code>sqlmigrate &lt;app_name&gt; &lt;migration_number&gt;</code>: Shows the SQL statements for a specific migration.</li>
+                </ul>
+                
+                <h3>User Management</h3>
+                <ul>
+                    <li><code>createsuperuser</code>: Creates an admin user with full access to the Django admin site.</li>
+                    <li><code>changepassword &lt;username&gt;</code>: Allows you to change a user's password.</li>
+                </ul>
+
+                <h3>Testing & Debugging</h3>
+                <ul>
+                    <li><code>test</code>: Runs the automated tests for all installed apps.</li>
+                    <li><code>test &lt;app_name&gt;</code>: Runs tests for a specific app.</li>
+                    <li><code>shell</code>: Opens the Python interactive shell with your Django project's environment loaded. Perfect for testing models and queries.</li>
+                    <li><code>check</code>: Checks your entire Django project for common problems.</li>
+                </ul>
+
+                <h3>Static Files</h3>
+                <ul>
+                    <li><code>collectstatic</code>: Gathers all static files from your apps into a single directory (`STATIC_ROOT`) for deployment.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Copy Code Button Functionality ---
+            const allCopyButtons = document.querySelectorAll('.copy-btn');
+
+            allCopyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const codeBlock = button.parentElement;
+                    const preElement = codeBlock.querySelector('pre');
+                    const code = preElement.innerText;
+
+                    navigator.clipboard.writeText(code).then(() => {
+                        const originalContent = button.innerHTML;
+                        button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                        
+                        setTimeout(() => {
+                            button.innerHTML = originalContent;
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+
+            // --- Active Nav Link on Scroll Functionality ---
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('#nav-links li a');
+
+            const observerOptions = {
+                root: null, // observes intersections relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.6 // 60% of the section must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

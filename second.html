@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Mastery Course</title>
+    <style>
+        :root {
+            --dark-bg: #1a1a2e;
+            --sidebar-bg: #16213e;
+            --content-bg: #0f3460;
+            --text-color: #e94560;
+            --light-text: #dcdcdc;
+            --code-bg: #0e121c;
+            --border-color: #e94560;
+            --accent-color: #53bf9d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        #sidebar {
+            width: 280px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            padding-top: 20px;
+            overflow-y: auto;
+            border-right: 2px solid var(--border-color);
+        }
+
+        #sidebar h2 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        #sidebar ul {
+            list-style-type: none;
+        }
+
+        #sidebar ul li a {
+            display: block;
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        #sidebar ul ul {
+            padding-left: 20px;
+        }
+
+        #sidebar ul li a:hover, #sidebar ul li a.active {
+            background-color: var(--content-bg);
+            color: var(--accent-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 16px;
+        }
+        
+        .topic-group > a {
+            font-weight: bold;
+            color: var(--text-color) !important;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+        }
+
+        section {
+            margin-bottom: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--sidebar-bg);
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.8em; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; color: var(--accent-color); margin-top: 30px;}
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgba(233, 69, 96, 0.1);
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: var(--accent-color);
+        }
+
+        .code-block-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--light-text);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--sidebar-bg);
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #45a084;
+        }
+        
+        .note {
+            background-color: rgba(83, 191, 157, 0.1);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <h2>Full Stack Python</h2>
+            <ul>
+                <li class="topic-group"><a href="#intro">Introduction</a></li>
+                <li class="topic-group">
+                    <a href="#python-basics">Python Basics</a>
+                    <ul>
+                        <li><a href="#py-variables">Variables & Data Types</a></li>
+                        <li><a href="#py-control-flow">Control Flow</a></li>
+                        <li><a href="#py-functions">Functions</a></li>
+                        <li><a href="#py-collections">Collections</a></li>
+                    </ul>
+                </li>
+                <li class="topic-group">
+                    <a href="#frontend-basics">Frontend Basics</a>
+                    <ul>
+                        <li><a href="#html-basics">HTML</a></li>
+                        <li><a href="#css-basics">CSS</a></li>
+                        <li><a href="#js-basics">JavaScript</a></li>
+                    </ul>
+                </li>
+                <li class="topic-group">
+                    <a href="#frontend-frameworks">Frontend Frameworks</a>
+                     <ul>
+                        <li><a href="#bootstrap">Bootstrap</a></li>
+                        <li><a href="#tailwind">Tailwind CSS</a></li>
+                    </ul>
+                </li>
+                <li class="topic-group">
+                    <a href="#django">Django Framework</a>
+                    <ul>
+                        <li><a href="#django-intro">Intro & Setup</a></li>
+                        <li><a href="#django-project">Start Project & App</a></li>
+                        <li><a href="#django-views">Views & URLs</a></li>
+                        <li><a href="#django-models">Models & Database</a></li>
+                        <li><a href="#django-admin">The Django Admin</a></li>
+                        <li><a href="#django-static">Static Files</a></li>
+                        <li><a href="#django-media">Media Files</a></li>
+                        <li><a href="#django-mysql">Connect to MySQL</a></li>
+                        <li><a href="#django-auth">User Authentication</a></li>
+                        <li><a href="#django-forms">Form Processing</a></li>
+                        <li><a href="#django-rest">REST API</a></li>
+                    </ul>
+                </li>
+                 <li class="topic-group">
+                    <a href="#flask">Flask Basics</a>
+                     <ul>
+                        <li><a href="#flask-intro">Intro & Hello World</a></li>
+                        <li><a href="#flask-templates">Template Rendering</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <section id="intro">
+                <h1>Python Full Stack Mastery Course 🚀</h1>
+                <p>Welcome to your comprehensive guide to becoming a Python Full Stack Developer. This page will walk you through everything from the absolute basics of Python to building complex web applications with Django and other modern technologies. Let's get started!</p>
+            </section>
+            
+            <section id="python-basics">
+                <h2>Python Basics</h2>
+                <p>Python is a powerful, readable, and versatile programming language. It's the foundation of our stack.</p>
+
+                <h3 id="py-variables">Variables & Data Types</h3>
+                <p>Variables store data. Python has several built-in data types.</p>
+                <div class="code-block-wrapper">
+                <pre><code># String (text)
+name = "Alice"
+
+# Integer (whole number)
+age = 30
+
+# Float (decimal number)
+height = 5.9
+
+# Boolean (True/False)
+is_student = True
+
+# Printing variables
+print(f"{name} is {age} years old.")</code></pre>
+                </div>
+
+                <h3 id="py-control-flow">Control Flow (if/else)</h3>
+                <p>Control flow directs the order in which code is executed.</p>
+                <div class="code-block-wrapper">
+                <pre><code>if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are a minor.")</code></pre>
+                </div>
+                
+                <h3 id="py-functions">Functions</h3>
+                <p>Functions are reusable blocks of code.</p>
+                <div class="code-block-wrapper">
+                <pre><code>def greet(person_name):
+    return f"Hello, {person_name}!"
+
+message = greet("Bob")
+print(message) # Output: Hello, Bob!</code></pre>
+                </div>
+                
+                <h3 id="py-collections">Collections (Lists & Dictionaries)</h3>
+                <p>Collections store multiple items.</p>
+                <div class="code-block-wrapper">
+                <pre><code># List (ordered, changeable)
+fruits = ["apple", "banana", "cherry"]
+print(fruits[1]) # Output: banana
+
+# Dictionary (unordered, key-value pairs)
+person = {
+    "name": "Charles",
+    "age": 25
+}
+print(person["name"]) # Output: Charles</code></pre>
+                </div>
+            </section>
+            
+            <section id="frontend-basics">
+                <h2>Frontend Basics</h2>
+                <p>The frontend is what the user sees and interacts with in their browser. HTML, CSS, and JavaScript are the three core technologies.</p>
+                
+                <h3 id="html-basics">HTML (HyperText Markup Language)</h3>
+                <p>HTML provides the structure and content of a webpage.</p>
+                 <div class="code-block-wrapper">
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    &lt;a href="https://google.com"&gt;Go to Google&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                
+                <h3 id="css-basics">CSS (Cascading Style Sheets)</h3>
+                <p>CSS is used to style the HTML content, controlling colors, fonts, layout, and more.</p>
+                 <div class="code-block-wrapper">
+                <pre><code>/* This code would go in a .css file or a &lt;style&gt; tag */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: navy;
+    text-align: center;
+}</code></pre>
+                </div>
+
+                <h3 id="js-basics">JavaScript</h3>
+                <p>JavaScript makes webpages interactive. It can manipulate HTML and CSS, handle events, and much more.</p>
+                 <div class="code-block-wrapper">
+                <pre><code>// This code would go in a .js file or a &lt;script&gt; tag
+document.addEventListener('DOMContentLoaded', () => {
+    const heading = document.querySelector('h1');
+    heading.addEventListener('click', () => {
+        alert('You clicked the heading!');
+    });
+});</code></pre>
+                </div>
+            </section>
+            
+             <section id="frontend-frameworks">
+                <h2>Frontend Frameworks</h2>
+                <p>Frameworks provide pre-written code and tools to build UIs faster.</p>
+
+                <h3 id="bootstrap">Bootstrap</h3>
+                <p>Bootstrap is a popular CSS framework for building responsive, mobile-first websites. You add it via a CDN link and use its pre-defined classes.</p>
+                <div class="code-block-wrapper">
+                <pre><code>&lt;!-- Add Bootstrap CSS to your &lt;head&gt; --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Use Bootstrap classes in your HTML --&gt;
+&lt;div class="container mt-4"&gt;
+    &lt;h1 class="text-primary"&gt;Hello, Bootstrap!&lt;/h1&gt;
+    &lt;button class="btn btn-success"&gt;Click Me&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                
+                <h3 id="tailwind">Tailwind CSS</h3>
+                <p>Tailwind is a utility-first CSS framework. Instead of pre-built components, it gives you low-level utility classes to build completely custom designs.</p>
+                 <div class="code-block-wrapper">
+                <pre><code>&lt;!-- Setup is more involved, usually with a build step. --&gt;
+&lt;!-- But in your HTML, you'd write something like this: --&gt;
+
+&lt;div class="bg-slate-800 text-white p-8 rounded-lg shadow-lg"&gt;
+    &lt;h1 class="text-3xl font-bold mb-4"&gt;Hello, Tailwind!&lt;/h1&gt;
+    &lt;button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"&gt;
+      Click Me
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+            
+            <section id="django">
+                <h2>The Django Framework</h2>
+                <p>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the "Don't Repeat Yourself" (DRY) principle.</p>
+
+                <h3 id="django-intro">Introduction & Setup</h3>
+                <p>First, you need to set up a virtual environment and install Django.</p>
+                <div class="code-block-wrapper">
+                <pre><code># 1. Create a virtual environment
+python -m venv myenv
+
+# 2. Activate it
+# On Windows:
+myenv\Scripts\activate
+# On MacOS/Linux:
+source myenv/bin/activate
+
+# 3. Install Django
+pip install django</code></pre>
+                </div>
+
+                <h3 id="django-project">Start a Project & App</h3>
+                <p>A Django **project** is the entire web application. An **app** is a module within the project that does one specific thing (e.g., a blog, a poll).</p>
+                <div class="code-block-wrapper">
+                <pre><code># 1. Start a new project named 'myproject'
+django-admin startproject myproject
+
+# 2. Navigate into the project directory
+cd myproject
+
+# 3. Start a new app named 'myapp'
+python manage.py startapp myapp</code></pre>
+                </div>
+                <div class="note">After creating an app, you must add it to the `INSTALLED_APPS` list in your project's `settings.py` file.</div>
+
+                <h3 id="django-views">Views & URLs</h3>
+                <p>A **view** is a Python function that takes a web request and returns a web response. **URLs** map a web address to a specific view.</p>
+                <p>In `myapp/views.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Hello, Django World!")</code></pre>
+                </div>
+                <p>Create `myapp/urls.py`:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]</code></pre>
+                </div>
+                <p>In `myproject/urls.py`, include your app's URLs:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')), # Include myapp's URLs
+]</code></pre>
+                </div>
+
+                <h3 id="django-models">Models & Database</h3>
+                <p>A **model** is the single, definitive source of information about your data. It's a Python class that maps to a database table.</p>
+                <p>In `myapp/models.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+                <p>After defining models, you need to create and apply database migrations:</p>
+                <div class="code-block-wrapper">
+                <pre><code># Create migration files
+python manage.py makemigrations
+
+# Apply migrations to the database
+python manage.py migrate</code></pre>
+                </div>
+
+                <h3 id="django-admin">The Django Admin</h3>
+                <p>Django comes with a powerful, built-in admin interface. To use it, you need to register your models and create a superuser.</p>
+                <p>In `myapp/admin.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from django.contrib import admin
+from .models import Post
+
+# Register your models here.
+admin.site.register(Post)</code></pre>
+                </div>
+                <p>Create a superuser to access the admin panel:</p>
+                <div class="code-block-wrapper">
+                <pre><code>python manage.py createsuperuser</code></pre>
+                </div>
+                <p>Now run the server (`python manage.py runserver`) and go to `/admin` to log in.</p>
+
+                <h3 id="django-static">Static Files (CSS, JS, Images)</h3>
+                <p>Static files are assets that don't change, like your CSS and JavaScript files. You need to configure Django to serve them.</p>
+                <p>In `myproject/settings.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>import os
+
+STATIC_URL = '/static/'
+
+# Add this line to tell Django where to find your static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]</code></pre>
+                </div>
+                <p>Create a `static` folder in your project's root directory. Inside it, you can place your CSS, JS, etc. Then, in your templates:</p>
+                <div class="code-block-wrapper">
+                <pre><code>{% load static %}
+&lt;link rel="stylesheet" href="{% static 'css/style.css' %}"&gt;</code></pre>
+                </div>
+
+                <h3 id="django-media">Media Files (User-Uploaded Content)</h3>
+                <p>Media files are user-uploaded files, like profile pictures or documents.</p>
+                <p>In `myproject/settings.py`:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')</code></pre>
+                </div>
+                <p>In `myproject/urls.py`, add the URL pattern for development:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # ... your other urls
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre>
+                </div>
+
+                <h3 id="django-mysql">Connect to MySQL</h3>
+                <p>By default, Django uses SQLite. To switch to MySQL, first install a database driver.</p>
+                 <div class="code-block-wrapper">
+                <pre><code>pip install mysqlclient</code></pre>
+                </div>
+                <p>Then, update the `DATABASES` setting in `myproject/settings.py`:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',  # Or your DB host
+        'PORT': '3306',
+    }
+}</code></pre>
+                </div>
+
+                <h3 id="django-auth">User Authentication</h3>
+                <p>Django has a built-in authentication system for handling user accounts, groups, permissions, and cookie-based user sessions.</p>
+                <div class="note">You don't need to create a User model; Django provides one. The `login`, `logout`, and `password_change` views are also built-in.</div>
+                <p>A simple login view in `myapp/views.py` might look like this:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')</code></pre>
+                </div>
+
+                <h3 id="django-forms">Form Processing</h3>
+                <p>Django provides two main ways to handle HTML forms.</p>
+                <h4>1. Using `forms.py` (The Django Way)</h4>
+                <p>This is the recommended approach. It handles rendering, validation, and cleaning data.</p>
+                <p>Create `myapp/forms.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)</code></pre>
+                </div>
+                 <p>In `myapp/views.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the data in form.cleaned_data
+            name = form.cleaned_data['name']
+            # ... do something with the data
+            return redirect('success')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})</code></pre>
+                </div>
+
+                <h4>2. Using `request.POST` (Manual Processing)</h4>
+                <p>You can access form data directly from the `request.POST` dictionary. This is simpler for very basic forms but lacks built-in validation.</p>
+                <p>In `myapp/views.py`:</p>
+                <div class="code-block-wrapper">
+                <pre><code>def simple_form_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        # Manually validate and process data
+        print(f"Name: {name}, Email: {email}")
+        return redirect('success')
+    return render(request, 'simple_form.html')</code></pre>
+                </div>
+
+                <h3 id="django-rest">REST API</h3>
+                <p>A REST API allows your application to communicate with other services (like a mobile app or a JavaScript frontend). The best way to build APIs in Django is with the **Django REST Framework (DRF)**.</p>
+                <p>First, install it:</p>
+                <div class="code-block-wrapper">
+                <pre><code>pip install djangorestframework</code></pre>
+                </div>
+                <p>A basic API requires a **Serializer** (to convert model instances to JSON) and a **ViewSet** (which handles the logic for CRUD operations).</p>
+                <p>Example of a `serializers.py` and `views.py` for our `Post` model:</p>
+                <div class="code-block-wrapper">
+                <pre><code># myapp/serializers.py
+from rest_framework import serializers
+from .models import Post
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['id', 'title', 'content', 'created_at']
+
+# myapp/views.py
+from rest_framework import viewsets
+from .models import Post
+from .serializers import PostSerializer
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer</code></pre>
+                </div>
+            </section>
+            
+            <section id="flask">
+                <h2>Flask Basics</h2>
+                <p>Flask is a "microframework" for Python. It's much simpler and more lightweight than Django, making it great for smaller projects or for learning web concepts.</p>
+                
+                <h3 id="flask-intro">Intro & Hello World</h3>
+                <p>A complete Flask app can be just a few lines of code.</p>
+                <p>Install Flask: <code>pip install Flask</code></p>
+                <p>Create a file `app.py`:</p>
+                 <div class="code-block-wrapper">
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+@app.route('/user/&lt;username&gt;')
+def show_user_profile(username):
+    # Variable passing from the URL
+    return f'User: {username}'
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+                </div>
+
+                <h3 id="flask-templates">Template Rendering</h3>
+                <p>Flask uses the Jinja2 templating engine, which is very similar to Django's.</p>
+                <p>Create a `templates` folder, and inside it, an `index.html` file:</p>
+                <div class="code-block-wrapper">
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Flask Template&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, {{ name_variable }}!&lt;/h1&gt;
+    &lt;p&gt;Here is your list:&lt;/p&gt;
+    &lt;ul&gt;
+        {% for item in list_variable %}
+            &lt;li&gt;{{ item }}&lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <p>Update your `app.py` to render this template:</p>
+                <div class="code-block-wrapper">
+                <pre><code>from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    # Passing variables to the template
+    my_name = "Alice"
+    my_list = ["apple", "banana", "cherry"]
+    return render_template('index.html', name_variable=my_name, list_variable=my_list)
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Copy Code Button Functionality ---
+            const allCodeBlocks = document.querySelectorAll('pre');
+
+            allCodeBlocks.forEach(block => {
+                const wrapper = block.parentElement;
+                if (wrapper.classList.contains('code-block-wrapper')) {
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-btn';
+                    copyButton.textContent = 'Copy';
+                    wrapper.appendChild(copyButton);
+
+                    copyButton.addEventListener('click', () => {
+                        const code = block.querySelector('code').innerText;
+                        navigator.clipboard.writeText(code).then(() => {
+                            copyButton.textContent = 'Copied!';
+                            setTimeout(() => {
+                                copyButton.textContent = 'Copy';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                        });
+                    });
+                }
+            });
+
+            // --- Active Link Highlighting on Scroll ---
+            const sidebarLinks = document.querySelectorAll('#sidebar a');
+            const sections = document.querySelectorAll('#main-content section');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.3 // trigger when 30% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        // Remove active class from all links
+                        sidebarLinks.forEach(link => link.classList.remove('active'));
+                        // Add active class to the corresponding link
+                        const activeLink = document.querySelector(`#sidebar a[href="#${id}"]`);
+                        if(activeLink) {
+                            activeLink.classList.add('active');
+                            // Also activate the parent topic group if it exists
+                             const parentLi = activeLink.closest('.topic-group');
+                             if(parentLi){
+                                 const parentLink = parentLi.querySelector('a');
+                                 if(parentLink){
+                                     parentLink.classList.add('active');
+                                 }
+                             }
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
